@@ -4,21 +4,16 @@
 
 package io.flutter.addfluttertoandroid
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.NonNull
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.*
 import android.widget.TextView
 import io.flutter.embedding.android.FlutterFragment
-import io.flutter.embedding.engine.FlutterEngine
-import kotlinx.android.synthetic.main.activity_main.*
-import android.view.*
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterView
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -56,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_favorite -> {
             Log.i("onCreate", "Menu item selected")
-            launchFlutterActivity()
+            //launchFlutterActivity()
             true
         }
         else -> {
@@ -80,8 +75,8 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    private fun launchFlutterActivity() =
-        startActivity(Intent(this, MyFlutterActivity::class.java))
+   /* private fun launchFlutterActivity() =
+        startActivity(Intent(this, MyFlutterActivity::class.java))*/
 
 }
 
@@ -113,25 +108,25 @@ class MyFlutterFragment : FlutterFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(): FlutterFragment =
             MyFlutterFragment().apply {
-                return FlutterFragment.Builder(MyFlutterFragment::class.java)
+                return FlutterFragment.Builder()
                     .renderMode(FlutterView.RenderMode.surface)
-                    .transparencyMode(FlutterView.TransparencyMode.transparent)
-                    .build<MyFlutterFragment>()
+                    .build()
             }
     }
 
-    override fun createFlutterEngine(@NonNull context: Context): FlutterEngine =
+    /*override fun createFlutterEngine(@NonNull context: Context): FlutterEngine =
          (context.applicationContext as MyApplication).engine
 
 
-    override fun retainFlutterEngineAfterFragmentDestruction() = true
+    override fun retainFlutterEngineAfterFragmentDestruction() = true*/
 }
 
+/*
 class MyFlutterActivity : FlutterActivity(), FlutterFragment.FlutterEngineProvider {
 
     override fun getFlutterEngine(context: Context): FlutterEngine? =
         (context.applicationContext as MyApplication).engine
 
-}
+}*/
